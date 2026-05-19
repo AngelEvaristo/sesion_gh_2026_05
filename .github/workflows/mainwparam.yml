@@ -10,6 +10,19 @@ on:
         description: 'Valor de version dotnet'
         required: true
         default: '9.0.x'
+      dotnet-version-choice-input:
+        description: 'Seleccionar la version a compilar'
+        type: choice
+        required: false
+        options:
+          - 9.0.x
+          - 8.0.x
+          - 7.0.x
+      test-boolean-input:
+        description: 'Seleccionar si se ejectan los test'
+        type: boolean
+        required: false
+        default: false                      
 
 jobs:
   build:

@@ -1,10 +1,15 @@
-name: Workflow Pr dotnet build
+name: Workflow con parametros
 
 on:
-  pull_request:
-    branches:
-      - main
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Valor env'
+        required: false
+      dotnet-version-input:
+        description: 'Valor de version dotnet'
+        required: true
+        default: '9.0.x'
 
 jobs:
   build:
@@ -20,10 +25,7 @@ jobs:
       - name: Install dotnet
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: '9.0.x'
-
-      - name: test LS
-        run: ls     
+          dotnet-version: ${{ github.event.inputs['dotnet-version-input'] }}  
 
       - name: Restore 
         run: dotnet restore

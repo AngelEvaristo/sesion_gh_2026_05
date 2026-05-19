@@ -5,6 +5,8 @@ on:
     branches:
       - main
       - develop
+    paths:
+      - 'MyMinimalApi/**'  
   workflow_dispatch: {}
 
 jobs:

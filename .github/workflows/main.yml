@@ -1,0 +1,31 @@
+name: Workflow dotnet build
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install dotnet
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: test LS
+        run: ls     
+
+      - name: Restore 
+        run: dotnet restore
+
+      - name: Build 
+        run: dotnet build --no-restore --configuration Release
+
+
